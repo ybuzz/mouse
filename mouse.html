@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html ng-app="app" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="//cdn.bootcss.com/angular.js/1.5.0/angular.js"></script><!--angular-->
+    <title>Title</title>
+</head>
+<style>
+    .container{
+        margin: 0 auto;
+        width: 700px;
+        height: 700px;
+        background-color: #dddddd;
+    }
+    .blockBox{
+        width: 100%;
+        height: 700px;
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        align-items: center;
+    }
+    .square{
+        overflow: hidden;
+        position: relative;
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        align-items: center;
+        width: 200px;
+        margin: auto;
+        height: 200px;
+        float: left;
+        background-color: yellowgreen;
+    }
+    .red{
+        background-color: red!important;
+    }
+    .btn{
+        border: none;
+        display: inline-block;
+        background-color: cyan;
+        margin: 20px;
+        font-size: 20px;
+        border-radius: 5px;
+        padding: 5px;
+    }
+    .text-center{
+        text-align: center;
+    }
+    .data{
+        display: flex;
+        justify-content: center;
+        width: 900px;
+        margin: 0 auto;
+    }
+    .data p {
+        width: 30%;
+        text-align: center;
+    }
+    .square:active{
+        background-color: red;
+    }
+
+</style>
+<body ng-controller="white as vm">
+<div class="text-center">
+    <button class="btn" ng-disabled="!vm.game" ng-class={'red':!vm.game} ng-click="vm.start()"> 开始 </button>
+    <button class="btn" ng-click="vm.end()"> 结束 </button>
+</div>
+
+<audio ng-src={{vm.src}} autoplay ></audio>
+<p class="text-center">欢乐斗地鼠</p>
+<p class="text-center">第{{vm.num}}关</p>
+<div class="data">
+    <p>得分{{vm.data}}</p>
+    <p>打到次数{{vm.add}}</p>
+    <p>打错次数{{vm.del}}</p>
+</div>
+<div class="container text-center">
+    <div class="blockBox">
+        <div class="square"  ng-repeat="x in vm.arr track by $index" ng-click="vm.test(x)">
+            <img ng-if="x.bol" class="img"  src="img/mouse.jpg" ng-click="vm.audio()" style="max-height: 100%;max-width: 100%" />
+        </div>
+    </div>
+</div>
+</body>
+<script src="js.js" ></script>
+</html>
